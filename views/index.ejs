@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDo App</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Candal|Chewy&display=swap" rel="stylesheet">
+    <link 
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    >
+  </head>
+  <body>
+    <div class="container">
+      <h2>ToDo</h2>
+      <form
+        action="/addtask"
+        method="POST"
+      >
+        <input
+          class="inputBox"
+          type="text"
+          name="content"
+          placeholder="add new task"
+        >
+        <button 
+          type="submit" 
+          class="button add"
+        ><span class="fas fa-plus"></span> Add Task</button>
+        <h2>Today Tasks</h2>
+          <ul class="tasks-list">
+            <% todoTasks.forEach(details => { %>
+              <% if (details._id === idTask) { %>
+                <li class="list-item">
+                  <input
+                    class="checkBox"
+                    type="text"
+                    name="content"
+                    value="<%= details.content %>" 
+                  />
+                  <a href="/edit/<%= details._id %>" class="edit">
+                    <span class="fas fa-edit"></span>
+                  </a>
+                </li>
+                
+              <% } else { %>
+                <li class="list-item">
+                  <div class="todo-list-item-name"><%= details.content %></div>
+                    <a href="/edit/<%= details._id %>" class="add"> <span class="fas fa-edit"></span>
+                    </a>
+                    <button
+                      class="button remove"
+                      type="submit"
+                    ><a href="/remove/<%= details._id %>" class="edit"><span class="fas fa-times"></span> Remove</a></button>
+                  
+                </li>
+            <% } %>
+          </ul>
+        <% }) %>
+      </form>
+      
+    </div>
+  </body>
+</html>
